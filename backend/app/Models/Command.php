@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Produit;
 
-class Reservation extends Model
+class Command extends Model
 {
     protected $fillable = [
         'quantite',

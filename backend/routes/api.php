@@ -5,7 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\CategorieController;
-use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\CommandController;
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
@@ -20,9 +20,9 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/categories', [CategorieController::class, 'index']);
     Route::post('/store', [CategorieController::class, 'store']);
 
-    Route::get('/reservation', [ReservationController::class, 'index']);
-    Route::post('/reserver', [ReservationController::class, 'store']);
-    Route::delete('/annuler/{reservation}', [ReservationController::class, 'annuler']);
-    Route::get('/reservations', [ReservationController::class, 'reservations']);
-    Route::put('/valide/{reservation}', [ReservationController::class, 'valide']);
+    Route::get('/commands', [CommandController::class, 'index']);
+    Route::post('/commandes', [CommandController::class, 'store']);
+    Route::delete('/annuler/{command}', [CommandController::class, 'annuler']);
+    Route::get('/reservations', [CommandController::class, 'reservations']);
+    Route::put('/valide/{command}', [CommandController::class, 'valide']);
 });

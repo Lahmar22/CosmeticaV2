@@ -12,36 +12,36 @@ use App\Http\Requests\updateStatusRequest;
 class CommandController extends Controller
 {
     public function index(){
-        $reservation = Command::where('client_id', auth('api')->id())->get();
+        $commands = Command::with('produit')->where('client_id', auth('api')->id())->get();
 
         return response()->json([
-            'reservation' => $reservation
+            'commands' => $commands
         ]);
     }
 
     public function reservations(){
-        $reservation = Command::with('produit')->get();
+        $commands = Command::with('produit')->get();
 
         return response()->json([
-            'reservations' => $reservation
+            'commands' => $commands
         ]);
     }
 
-    public function store(ReservationRequest $request){
+    public function store(Request $request){
 
-        $produit = Produit::find($request->produit_id);
 
-        $resevation = Command::create([
-            'quantite' => $request->quantite,
-            'statuts' => 'en attente',
-            'prixTotal' => $request->quantite * $produit->prix,
-            'produit_id' => $request->produit_id,
-            'client_id' => auth('api')->id()
-        ]);
+        foreach($request->produits as $produit){
+            Command::create([
+                'quantite' => $produit['quantity'],
+                'statuts' => 'en attente',
+                'prixTotal' => $produit['quantity'] * $produit['prix'],
+                'produit_id' => $produit['id'],
+                'client_id' => auth('api')->id()
+            ]);
+        } 
 
         return response()->json([
-            'message' => 'reservation succees',
-            'reservation' => $resevation
+            'message' => 'commande cree avec succes'
         ]);
     }
 

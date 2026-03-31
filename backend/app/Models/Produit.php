@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Categorie;
-use App\Models\Reservation;
+use App\Models\Command;
 
 class Produit extends Model
 {
@@ -21,8 +21,8 @@ class Produit extends Model
         return $this->belongsTo(Categorie::class);
     }
 
-    public function reservation()
+    public function command()
     {
-        return $this->hasMany(Reservation::class);
+        return $this->hasMany(Command::class);
     }
 }

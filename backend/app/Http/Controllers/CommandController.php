@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\Reservation;
+use App\models\Command;
 use App\models\Produit;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Requests\ReservationRequest;
 use App\Http\Requests\updateStatusRequest;
 
-class ReservationController extends Controller
+class CommandController extends Controller
 {
     public function index(){
-        $reservation = Reservation::where('client_id', auth('api')->id())->get();
+        $reservation = Command::where('client_id', auth('api')->id())->get();
 
         return response()->json([
             'reservation' => $reservation
@@ -20,7 +20,7 @@ class ReservationController extends Controller
     }
 
     public function reservations(){
-        $reservation = Reservation::with('produit')->get();
+        $reservation = Command::with('produit')->get();
 
         return response()->json([
             'reservations' => $reservation
@@ -31,7 +31,7 @@ class ReservationController extends Controller
 
         $produit = Produit::find($request->produit_id);
 
-        $resevation = Reservation::create([
+        $resevation = Command::create([
             'quantite' => $request->quantite,
             'statuts' => 'en attente',
             'prixTotal' => $request->quantite * $produit->prix,
@@ -45,9 +45,9 @@ class ReservationController extends Controller
         ]);
     }
 
-    public function valide(updateStatusRequest $request, Reservation $reservation){
-        $reservation->statuts = $request->statuts;
-        $reservation->save();
+    public function valide(updateStatusRequest $request, Command $command){
+        $command->statuts = $request->statuts;
+        $command->save();
 
         return response()->json([
             'message' => 'statuts update succes',

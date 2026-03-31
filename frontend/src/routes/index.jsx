@@ -7,6 +7,8 @@ import DashboardEmploye from "../pages/employe/Dashboard.jsx";
 import DashboardClient from "../pages/client/Dashboard.jsx";
 import ClientProducts from "../pages/client/Products.jsx";
 import ClientAbout from "../pages/client/About.jsx";
+import Cart from "../pages/client/Cart.jsx";
+import Commands from "../pages/client/Commands.jsx";
 
 export default function Router() {
     return (
@@ -20,6 +22,8 @@ export default function Router() {
                 <Route path="/client/dashboard" element={<DashboardClient />} />
                 <Route path="/client/products" element={<ClientProducts />} />
                 <Route path="/client/about" element={<ClientAbout />} />
+                <Route path="/client/cart" element={<Cart />} />
+                <Route path="/client/commands" element={<Commands />} />
             </Routes>
         </BrowserRouter>
     );

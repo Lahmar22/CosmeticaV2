@@ -3,7 +3,7 @@ import Footer from "../../components/Footer.jsx";
 
 export default function Dashboard() {
     return (
-        <div className="flex flex-col min-h-screen bg-gradient-to-br from-rose-50 via-white to-pink-50 font-sans text-gray-800">
+        <div className="flex flex-col min-h-screen bg-linear-to-br from-rose-50 via-white to-pink-50 font-sans text-gray-800">
 
             {/* Header */}
             <Header />
@@ -17,7 +17,7 @@ export default function Dashboard() {
                     {/* Title Area */}
                     <div className="mb-10 flex items-center justify-between">
                         <div>
-                            <h1 className="text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-pink-500 mb-2">
+                            <h1 className="text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-linear-to-r from-rose-600 to-pink-500 mb-2">
                                 Bonjour, Client ✨
                             </h1>
                             <p className="text-gray-500 text-lg">

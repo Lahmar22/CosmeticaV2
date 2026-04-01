@@ -56,12 +56,13 @@ class CommandController extends Controller
 
     }
 
-    public function annuler(Reservation $reservation){
+    public function annuler(Command $command){
 
-        $reservation->delete();
+        $command->statuts = "annulée";
+        $command->save();
 
         return response()->json([
-            "message" => "annuler reservation successfully"
+            'message' => 'commande annuler avec succes',
         ]);
     }
 }

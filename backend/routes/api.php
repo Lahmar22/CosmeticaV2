@@ -22,7 +22,7 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/commands', [CommandController::class, 'index']);
     Route::post('/commandes', [CommandController::class, 'store']);
-    Route::delete('/annuler/{command}', [CommandController::class, 'annuler']);
+    Route::put('/commands/{command}', [CommandController::class, 'annuler']);
     Route::get('/reservations', [CommandController::class, 'reservations']);
     Route::put('/valide/{command}', [CommandController::class, 'valide']);
 });

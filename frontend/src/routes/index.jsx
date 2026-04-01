@@ -4,6 +4,8 @@ import Login from "../pages/Login.jsx";
 import Register from "../pages/Register.jsx";
 import DashboardAdmin from "../pages/admin/Dashboard.jsx";
 import DashboardEmploye from "../pages/employe/Dashboard.jsx";
+import EmployeOrders from "../pages/employe/Orders.jsx";
+import OrderPreparation from "../pages/employe/OrderPreparation.jsx";
 import DashboardClient from "../pages/client/Dashboard.jsx";
 import ClientProducts from "../pages/client/Products.jsx";
 import ClientAbout from "../pages/client/About.jsx";
@@ -19,6 +21,8 @@ export default function Router() {
                 <Route path="/register" element={<Register/>} />
                 <Route path="/admin/dashboard" element={<DashboardAdmin />} />
                 <Route path="/employe/dashboard" element={<DashboardEmploye />} />
+                <Route path="/employe/orders" element={<EmployeOrders />} />
+                <Route path="/employe/orders/:id" element={<OrderPreparation />} />
                 <Route path="/client/dashboard" element={<DashboardClient />} />
                 <Route path="/client/products" element={<ClientProducts />} />
                 <Route path="/client/about" element={<ClientAbout />} />

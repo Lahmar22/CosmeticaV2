@@ -19,11 +19,18 @@ class CommandController extends Controller
         ]);
     }
 
-    public function reservations(){
-        $commands = Command::with('produit')->get();
+    public function allCommands(){
+        $commands = Command::with('produit', 'client')->get();
 
         return response()->json([
             'commands' => $commands
+        ]);
+    }
+    public function show(Command $command){
+        $command->load('produit', 'client');
+
+        return response()->json([
+            'command' => $command
         ]);
     }
 
@@ -50,8 +57,7 @@ class CommandController extends Controller
         $command->save();
 
         return response()->json([
-            'message' => 'statuts update succes',
-            'reservation' => $reservation
+            'message' => 'statuts update succes'
         ]);
 
     }

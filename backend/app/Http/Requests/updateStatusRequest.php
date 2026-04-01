@@ -23,7 +23,7 @@ class updateStatusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'statuts' => 'required|in:en attente,en préparation,livrée,annulée',
+            'statuts' => 'required|in:en attente,en préparation,prête à livrer,livrée,annulée',
         ];
     }
 

@@ -23,6 +23,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/commands', [CommandController::class, 'index']);
     Route::post('/commandes', [CommandController::class, 'store']);
     Route::put('/commands/{command}', [CommandController::class, 'annuler']);
-    Route::get('/reservations', [CommandController::class, 'reservations']);
+    Route::get('/allCommands', [CommandController::class, 'allCommands']);
     Route::put('/valide/{command}', [CommandController::class, 'valide']);
+    Route::get('/commands/{command}', [CommandController::class, 'show']);
 });

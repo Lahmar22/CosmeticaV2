@@ -35,5 +35,5 @@ L’objectif est de permettre aux utilisateurs de :
 
 ### 1️⃣ Cloner le projet
 ```bash
-git clone https://github.com/your-username/la-cosmetica.git
-cd la-cosmetica
+git clone https://github.com/Lahmar22/CosmeticaV2.git
+cd CosmeticaV2

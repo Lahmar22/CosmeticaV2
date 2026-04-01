@@ -13,11 +13,40 @@ export default function MesCommandes() {
                 Authorization: `Bearer ${token}`
             }
         })
-        .then(res => {
-            setCommands(res.data.commands);
-        })
-        .catch(err => console.log(err.response?.data || err));
+            .then(res => {
+                setCommands(res.data.commands);
+            })
+            .catch(err => console.log(err.response?.data || err));
     }, []);
+
+    const annulerCommande = async (commandId) => {
+        try {
+            const token = localStorage.getItem("token");
+
+            const response = await axios.put(
+                `http://127.0.0.1:8000/api/commands/${commandId}`,
+                {
+                    statuts: "annulée"
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            setCommands((prevCommands) =>
+                prevCommands.map((cmd) =>
+                    cmd.id === commandId ? { ...cmd, statuts: "annulée" } : cmd
+                )
+            );
+
+        } catch (error) {
+            console.error(error);
+            alert("Erreur lors de l'annulation de la commande");
+        }
+    };
+
 
     return (
         <div className="flex flex-col min-h-screen bg-gray-50">
@@ -46,6 +75,7 @@ export default function MesCommandes() {
                                     <th className="px-6 py-3">Total</th>
                                     <th className="px-6 py-3">Statut</th>
                                     <th className="px-6 py-3">Date</th>
+                                    <th className="px-6 py-3">Actions</th>
                                 </tr>
                             </thead>
 
@@ -90,6 +120,20 @@ export default function MesCommandes() {
 
                                         <td className="px-6 py-4 text-gray-500">
                                             {new Date(cmd.created_at).toLocaleDateString()}
+                                        </td>
+
+                                        <td className="px-6 py-4">
+                                            {cmd.statuts !== "annulée" ? (
+                                                <button
+                                                    onClick={() => annulerCommande(cmd.id)}
+                                                    className="px-4 py-2 text-rose-500 border border-rose-500 rounded-full hover:bg-rose-500 hover:text-white"
+                                                >
+                                                    Annuler
+                                                </button>
+                                            ) : (
+                                                <span className="text-gray-400">Aucune action</span>
+                                            )}
+
                                         </td>
 
                                     </tr>
